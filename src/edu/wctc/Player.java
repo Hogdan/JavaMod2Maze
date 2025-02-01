@@ -3,11 +3,11 @@ package edu.wctc;
 import java.util.ArrayList;
 
 public class Player {
-    private int score;
+    private int lives;
     private final ArrayList<String> inventory;
 
     public Player() {
-        this.score = 0;
+        this.lives = 3;
         this.inventory = new ArrayList<>();
     }
 
@@ -15,18 +15,18 @@ public class Player {
         inventory.add(item);
     }
 
-    public void addToScore(int points) {
-        score += points;
+    public void addToLives(int points) {
+        lives += points;
     }
 
     public String getInventory() {
         if (inventory.isEmpty()) {
-            return "Inventory is empty.";
+            return "You have nothing.";
         }
         return String.join(", ", inventory);
     }
 
-    public int getScore() {
-        return score;
+    public int getLives() {
+        return lives;
     }
 }

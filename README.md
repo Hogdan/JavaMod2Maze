@@ -1,3 +1,8 @@
+# Phase 2
+I didn’t quite know which direction to take this project in Phase 2 because I was stuck with the movie Cube in my head. So originally, I was going to have mostly indistinguishable rooms in a large cube, many filled with hidden death traps that could be sprung by throwing a shoe. This is why the rooms are named by color and shoes are the only loot. Lives were originally survivors, like the movie some rooms would have other people who would join you and soak up traps if you were out of shoes.
+I couldn’t make it very fun to play though and I didn’t want to bother making 25+ rooms and setting all the connections to other rooms. Instead, I experimented with other features such as the implementation of a go back command (which was removed) and a lock on the exit which is opened by an interaction in a different room. I feel most proud of the riddle maze section the player must traverse to unlock the exit. I got a big eureka-moment once I realized the rooms could break the laws of Euclidean geometry and didn’t have to have logical connections.
+
+
 # Phase 1
 Copilot was unable to write me a working program on its own so phase 1 is not entirely AI generated this time. It took a little while to get used to all the separate files and general structure of the program, but I got a simple working prototype that met most of the requirements in the readme.
 

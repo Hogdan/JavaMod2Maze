@@ -7,6 +7,6 @@ public class StartRoom extends Room {
 
     @Override
     public String getDescription() {
-        return "This is the room you woke up in.";
+        return "Painfully bright lights illumitate the empty metal room.";
     }
 }

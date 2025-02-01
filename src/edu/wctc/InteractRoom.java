@@ -7,12 +7,11 @@ public class InteractRoom extends Room implements Interactable {
 
     @Override
     public String getDescription() {
-        return "You can interact with this room.";
+        return "There is a switch in this room.";
     }
 
     @Override
     public String interact(Player player) {
-        player.addToScore(10);
-        return "You gained 10 points!";
+        return "You hear machines grinding in the distance.";
     }
 }

@@ -7,7 +7,7 @@ public class ExitRoom extends Room implements Exitable {
 
     @Override
     public String getDescription() {
-        return "You are in the exit room.";
+        return "The exit stands in the middle of this room.";
     }
 
     @Override

@@ -8,12 +8,11 @@ public class Main {
         Maze maze = new Maze();
         try (Scanner keyboard = new Scanner(System.in)) {
             String input;
-
-            System.out.println("Welcome to the maze!");
+            System.out.println("You wake up in a labyrinth.");
             while (!maze.isFinished()) {
+                System.out.println("You are in the %s.".formatted(maze.getCurrentRoomName()));
                 System.out.println(maze.getCurrentRoomDescription());
-                System.out.println("You can move: " + maze.getCurrentRoomExits());
-                System.out.println("What would you like to do?");
+                System.out.println("You can move " + maze.getCurrentRoomExits());
                 input = keyboard.nextLine();
                 switch (input) {
                     case "n" -> maze.move('n');
@@ -26,10 +25,9 @@ public class Main {
                     case "l" -> System.out.println(maze.lootCurrentRoom());
                     case "x" -> System.out.println(maze.exitCurrentRoom());
                     case "v" -> System.out.println(maze.getPlayerInventory());
-                }
+                    case "p" -> System.out.println(maze.getPlayerLives() + " lives remaining.");}
             }
-            System.out.println(maze.getPlayerScore() + " points!");
+            System.out.println("You escaped with %s lives!".formatted(maze.getPlayerLives()));
         }
     }
-
 }
