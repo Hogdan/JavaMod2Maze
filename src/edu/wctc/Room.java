@@ -3,6 +3,12 @@ package edu.wctc;
 public abstract class Room {
     protected String name;
     protected Room north, south, east, west, up, down;
+    
+    // Boolean fields to keep track of various room states.
+    private boolean isVisited;
+    private boolean isLocked;
+    private boolean isInteracted;
+    private boolean isLooted;
 
     public Room(String name) {
         this.name = name;
@@ -40,6 +46,38 @@ public abstract class Room {
 
     public boolean isValidDirection(char direction) {
         return getAdjoiningRoom(direction) != null;
+    }
+    
+    public boolean getLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
+
+    public boolean getInteracted() {
+        return isInteracted;
+    }
+
+    public void setInteracted(boolean interacted) {
+        isInteracted = interacted;
+    }
+
+    public boolean getVisited() {
+        return isVisited;
+    }
+
+    public void setVisited(boolean visited) {
+        isVisited = visited;
+    }
+
+    public boolean getLooted() {
+        return isLooted;
+    }
+
+    public void setLooted(boolean looted) {
+        isLooted = looted;
     }
 
     public void setNorth(Room room) { this.north = room; }

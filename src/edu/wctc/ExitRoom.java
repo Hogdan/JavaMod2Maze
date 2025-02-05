@@ -5,6 +5,7 @@ public class ExitRoom extends Room implements Exitable {
         super(name);
     }
 
+    // I'm not sure what the exit is, a portal I suppose.
     @Override
     public String getDescription() {
         return "The exit stands in the middle of this room.";
@@ -12,6 +13,7 @@ public class ExitRoom extends Room implements Exitable {
 
     @Override
     public String exit(Player player) {
-        return "You have exited the maze.";
+        player.addToScore(10);
+        return "You have escaped Zerk.";
     }
 }

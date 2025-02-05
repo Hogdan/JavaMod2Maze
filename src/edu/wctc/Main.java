@@ -8,26 +8,40 @@ public class Main {
         Maze maze = new Maze();
         try (Scanner keyboard = new Scanner(System.in)) {
             String input;
-            System.out.println("You wake up in a labyrinth.");
+            System.out.println("Welcome to Zerk.\nType 'h' for help.\n");
+            // Main game loop
             while (!maze.isFinished()) {
-                System.out.println("You are in the %s.".formatted(maze.getCurrentRoomName()));
-                System.out.println(maze.getCurrentRoomDescription());
-                System.out.println("You can move " + maze.getCurrentRoomExits());
+                System.out.println(maze.getCurrentRoomName());
+                System.out.println(maze.isFirstVisit() ? maze.getCurrentRoomDescription() : "");
                 input = keyboard.nextLine();
-                switch (input) {
-                    case "n" -> maze.move('n');
-                    case "s" -> maze.move('s');
-                    case "e" -> maze.move('e');
-                    case "w" -> maze.move('w');
-                    case "u" -> maze.move('u');
-                    case "d" -> maze.move('d');
-                    case "i" -> System.out.println(maze.interactWithCurrentRoom());
-                    case "l" -> System.out.println(maze.lootCurrentRoom());
-                    case "x" -> System.out.println(maze.exitCurrentRoom());
-                    case "v" -> System.out.println(maze.getPlayerInventory());
-                    case "p" -> System.out.println(maze.getPlayerLives() + " lives remaining.");}
+                System.out.println(processInput(maze, input));
             }
-            System.out.println("You escaped with %s lives!".formatted(maze.getPlayerLives()));
+            System.out.println("Game Over " + maze.getPlayerScore());
         }
+    }
+
+    // Process user input
+    private static String processInput(Maze maze, String input) {
+        return switch (input.toLowerCase()) {
+            case "n" -> maze.move('n');
+            case "s" -> maze.move('s');
+            case "e" -> maze.move('e');
+            case "w" -> maze.move('w');
+            case "u" -> maze.move('u');
+            case "d" -> maze.move('d');
+            case "h" -> """
+                    Available commands:
+                    look, use, take
+                    n e s w u d - move
+                    x - exit
+                    i - inventory""";
+            case "look" -> maze.getCurrentRoomDescription();
+            case "use" -> maze.interactWithCurrentRoom();
+            case "take" -> maze.lootCurrentRoom();
+            case "x" -> maze.exitCurrentRoom();
+            case "i" -> maze.getPlayerInventory();
+            case "c" -> maze.getPlayerScore();
+            default -> "Invalid input.";
+        };
     }
 }

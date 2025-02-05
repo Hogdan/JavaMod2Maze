@@ -7,11 +7,31 @@ public class RiddleRoom extends Room implements Interactable {
 
     @Override
     public String getDescription() {
-        return "There is something scrawled on the wall.";
+        return """
+                You are standing in a small windowless room. The door to the foyer is to your west.
+                A lamp sits atop a desk in the corner of the room. There are strange marks scratched into the wood.""";
     }
 
+    /*  
+    I am proud of this riddle, Copilot didn't write it for me.
+    I came up with it when I was looking at the 6 chars the player was allowed to move.
+    I wanted the path to be a word spelled with n s e w u d but had trouble since I couldn't use opposite directions.
+    You would just go back to the last room. Thats when I realized that the rooms didn't have to connect logically.
+    The doors to other rooms worked just fine if they were one way. So I picked a word that I was able to make a riddle with,
+    and I came up with "unseen" */
     @Override
-    public String interact(Player player) {
-        return "Here and the exit,\nSix rooms in between,\nCan't trust your eyes,\nThe route is _______.\n";
+    public String interact(Player player , Room room) {
+        if (!room.getInteracted()) {
+            player.addToScore(5);
+            room.setInteracted(true);
+        }
+        return """
+                The marks compose a hastily scrawled message someone must have left behind,
+                To freedom from here,
+                Six rooms in between,
+                Don't trust your eyes,
+                The route is _______
+                
+                You can't make out the last word.""";
     }
 }
