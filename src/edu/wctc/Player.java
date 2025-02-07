@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 public class Player {
     private int score;
+    private int actions;
     private final ArrayList<String> inventory;
 
     public Player() {
         this.score = 0;
+        this.actions = 0;
         this.inventory = new ArrayList<>();
     }
 
@@ -19,8 +21,20 @@ public class Player {
         inventory.remove(item);
     }
 
+    public int getScore() {
+        return score;
+    }
+
     public void addToScore(int points) {
         score += points;
+    }
+
+    public int getActions() {
+        return actions;
+    }
+
+    public void incrementActions() {
+        actions++;
     }
 
     public String getInventory() {
@@ -30,7 +44,4 @@ public class Player {
         return "You have: " + String.join(", ", inventory);
     }
 
-    public int getScore() {
-        return score;
-    }
 }

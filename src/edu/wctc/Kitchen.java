@@ -20,7 +20,7 @@ public class Kitchen extends Room implements Lootable {
     // Or keeping track of how many moves had been made and starving the player if they took too long without sustinance.
     @Override
     public String loot(Player player) {
-        if (this.getLooted()) {
+        if (this.isLooted()) {
             return "You have already searched the sack.";
         }
         this.setLooted(true);

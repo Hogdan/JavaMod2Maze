@@ -48,7 +48,7 @@ public abstract class Room {
         return getAdjoiningRoom(direction) != null;
     }
     
-    public boolean getLocked() {
+    public boolean isLocked() {
         return isLocked;
     }
 
@@ -56,7 +56,7 @@ public abstract class Room {
         isLocked = locked;
     }
 
-    public boolean getInteracted() {
+    public boolean isInteracted() {
         return isInteracted;
     }
 
@@ -64,7 +64,7 @@ public abstract class Room {
         isInteracted = interacted;
     }
 
-    public boolean getVisited() {
+    public boolean isVisited() {
         return isVisited;
     }
 
@@ -72,7 +72,7 @@ public abstract class Room {
         isVisited = visited;
     }
 
-    public boolean getLooted() {
+    public boolean isLooted() {
         return isLooted;
     }
 

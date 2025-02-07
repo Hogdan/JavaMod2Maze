@@ -17,7 +17,7 @@ public class Basement extends Room implements Lootable, Tripable {
 
     @Override
     public String loot(Player player) {
-        if (this.getLooted()) {
+        if (this.isLooted()) {
             return "You have already looted this room.";
         }
         this.setLooted(true);
@@ -30,7 +30,7 @@ public class Basement extends Room implements Lootable, Tripable {
     @Override
     public String trip(Player player) {
         player.addToScore(-10);
-        return "You trip on the stairs in the darkness and break your neck.";
+        return "You trip down the stairs in the darkness and break your neck.";
     }
 
 }

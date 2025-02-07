@@ -17,7 +17,7 @@ public class SouthOfHouse extends Room implements Lootable{
     // Loot text should change once the player has picked up the item.
     @Override
     public String loot(Player player) {
-        if (this.getLooted()) {
+        if (this.isLooted()) {
             return "You have already searched the rubble.";
         }
         this.setLooted(true);
