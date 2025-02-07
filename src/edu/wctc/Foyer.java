@@ -17,7 +17,7 @@ public class Foyer extends Room implements Lootable, Interactable {
     // I though it was okay to handle them in the room's interact method though, I just pass the current room in.
     @Override
     public String interact(Player player, Room room) {
-        if (!room.getInteracted()) {
+        if (!room.isInteracted()) {
             if (player.getInventory().contains("key")) {
                 player.addToScore(5);
                 // Key is one use only to not take up inventory space.
@@ -37,7 +37,7 @@ public class Foyer extends Room implements Lootable, Interactable {
     // There is no hint that this room has loot, I want the player to have to search.
     @Override
     public String loot(Player player) {
-        if (this.getLooted()) {
+        if (this.isLooted()) {
             return "There is nothing to take.";
         }
         this.setLooted(true);

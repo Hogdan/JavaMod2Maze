@@ -1,6 +1,6 @@
 package edu.wctc;
 
-public class Mountains extends Room implements Returnable {
+public class Mountains extends Room implements Bounceable {
     public Mountains(String name) {
         super(name);
     }
@@ -8,7 +8,10 @@ public class Mountains extends Room implements Returnable {
     // There were going to be more of these boundary rooms but I only bothered making this one.
     @Override
     public String getDescription() {
-        return "The terrain turns sharply mountainous and forces yout to turn back";
+        return """
+                The soft earth under your feet gives way to sharp rocks and loose gravel as a steep mountain looms ahead.
+                There is no path forward. You return the way you came.
+                """;
     }
     
 }

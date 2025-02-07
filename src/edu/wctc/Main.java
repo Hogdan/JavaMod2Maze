@@ -3,25 +3,28 @@ package edu.wctc;
 import java.util.Scanner;
 
 public class Main {
+    private static Maze maze;
 
     public static void main(String[] args) {
-        Maze maze = new Maze();
+        maze = new Maze();
         try (Scanner keyboard = new Scanner(System.in)) {
-            String input;
             System.out.println("Welcome to Zerk.\nType 'h' for help.\n");
             // Main game loop
             while (!maze.isFinished()) {
-                System.out.println(maze.getCurrentRoomName());
+                // Each step prints the name of the room the player is in.
+                System.out.println("≡≡ %s ≡≡".formatted(maze.getCurrentRoomName()));
+                // And executes the look command if it is the first time the room is visited.
                 System.out.println(maze.isFirstVisit() ? maze.getCurrentRoomDescription() : "");
-                input = keyboard.nextLine();
-                System.out.println(processInput(maze, input));
+                // The player can then input a command which is passed to the processInput method.
+                System.out.println(processInput(keyboard.nextLine()));
             }
-            System.out.println("Game Over " + maze.getPlayerScore());
+            // maze.finishGame() sets maze.isFinished true to exit the loop when the player types quit or x while in the exit room.
+            System.out.println("| Game Over | %s | %S |".formatted(maze.getPlayerScore(), maze.getPlayerActions()));
         }
     }
 
     // Process user input
-    private static String processInput(Maze maze, String input) {
+    private static String processInput(String input) {
         return switch (input.toLowerCase()) {
             case "n" -> maze.move('n');
             case "s" -> maze.move('s');
@@ -34,13 +37,15 @@ public class Main {
                     look, use, take
                     n e s w u d - move
                     x - exit
-                    i - inventory""";
+                    i - inventory
+                    
+                    quit - give up""";
             case "look" -> maze.getCurrentRoomDescription();
             case "use" -> maze.interactWithCurrentRoom();
             case "take" -> maze.lootCurrentRoom();
             case "x" -> maze.exitCurrentRoom();
             case "i" -> maze.getPlayerInventory();
-            case "c" -> maze.getPlayerScore();
+            case "quit" -> maze.finishGame();
             default -> "Invalid input.";
         };
     }

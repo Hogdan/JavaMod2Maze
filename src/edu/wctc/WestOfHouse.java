@@ -8,14 +8,16 @@ public class WestOfHouse extends Room implements Interactable, Lootable {
     @Override
     public String getDescription() {
         return """
-                You are standing in an open field west of a white house, with a boarded front door.
-                There is a small mailbox here.""";
+                You are standing in an open field, west of a white house with a boarded front door.
+                There is a small mailbox here. Past the end of the field trees stretch in all directions.
+                A dirt path leads behind the house to the south.
+                """;
     }
 
     // Interact nets the player points but only once.
     @Override
     public String interact(Player player, Room room) {
-        if (!room.getInteracted()) {
+        if (!room.isInteracted()) {
             room.setInteracted(true);
             player.addToScore(5);
         }
