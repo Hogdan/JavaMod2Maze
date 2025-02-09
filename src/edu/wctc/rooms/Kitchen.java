@@ -1,4 +1,4 @@
-package edu.wctc;
+package edu.wctc.rooms;
 
 public class Kitchen extends Room implements Lootable {
     public Kitchen(String name) {
@@ -10,9 +10,9 @@ public class Kitchen extends Room implements Lootable {
         return """
                 Dust motes swirl in the ribbons of sunlight that filter through the boarded up windows.
                 The kitchen has not been disturbed in some time, a brown sack sits on the table.
-                There is a passage to the foyar to the North and the window you pried open is to the East.
-                In the opposite corner narrow stairs descend into the darkness.
-                It would be dangerous to go Down there without a light.
+                There is a passage to the foyer to the North and a boarded window you to the East.
+                In the corner of the room, a narrow set of stairs descends into total darkness.
+                You wouldn't survive going Down there without a light.
                 """;
     }
 

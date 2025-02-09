@@ -1,4 +1,4 @@
-package edu.wctc;
+package edu.wctc.rooms;
 
 public abstract class Room {
     protected String name;

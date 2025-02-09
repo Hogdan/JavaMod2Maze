@@ -1,4 +1,5 @@
-package edu.wctc;
+package edu.wctc.rooms;
+
 // This is the first room of the game.
 public class WestOfHouse extends Room implements Interactable, Lootable {
     public WestOfHouse(String name) {
@@ -10,11 +11,11 @@ public class WestOfHouse extends Room implements Interactable, Lootable {
         return """
                 You are standing in an open field, west of a white house with a boarded front door.
                 There is a small mailbox here. Past the end of the field trees stretch in all directions.
-                A dirt path leads behind the house to the south.
+                A dirt path leads around the house to the south.
                 """;
     }
 
-    // Interact nets the player points but only once.
+    // Interact nets the player points but only the first time.
     @Override
     public String interact(Player player, Room room) {
         if (!room.isInteracted()) {

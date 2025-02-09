@@ -1,4 +1,4 @@
-package edu.wctc;
+package edu.wctc.rooms;
 
 public class Forest extends Room {
     public Forest(String name) {

@@ -8,13 +8,13 @@ public class Main {
     public static void main(String[] args) {
         maze = new Maze();
         try (Scanner keyboard = new Scanner(System.in)) {
-            System.out.println("Welcome to Zerk.\nType 'h' for help.\n");
+            System.out.println("Welcome to Zerk.\nType 'h' for help.");
             // Main game loop
             while (!maze.isFinished()) {
                 // Each step prints the name of the room the player is in.
-                System.out.println("≡≡ %s ≡≡".formatted(maze.getCurrentRoomName()));
-                // And executes the look command if it is the first time the room is visited.
-                System.out.println(maze.isFirstVisit() ? maze.getCurrentRoomDescription() : "");
+                System.out.println("\n≡≡ %s ≡≡".formatted(maze.getCurrentRoomName()));
+                // Then executes the look command if it is the first time the room is visited.
+                System.out.println(maze.isFirstVisit());
                 // The player can then input a command which is passed to the processInput method.
                 System.out.println(processInput(keyboard.nextLine()));
             }
@@ -36,9 +36,9 @@ public class Main {
                     Available commands:
                     look, use, take
                     n e s w u d - move
-                    x - exit
                     i - inventory
-                    
+                    x - exit
+
                     quit - give up""";
             case "look" -> maze.getCurrentRoomDescription();
             case "use" -> maze.interactWithCurrentRoom();

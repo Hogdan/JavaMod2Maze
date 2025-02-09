@@ -1,5 +1,7 @@
 package edu.wctc;
 
+import edu.wctc.rooms.*;
+
 public class Maze {
     private Room currentRoom;
     private final Room anchorRoom;
@@ -16,8 +18,10 @@ public class Maze {
         Room northOfHouse = new NorthOfHouse("North of House");
         Room behindHouse = new BehindHouse("Behind House");
         Room southOfHouse = new SouthOfHouse("South of House");
+        Room gardenShed = new GardenShed("Garden Shed");
         Room kitchen = new Kitchen("Kitchen");
         Room foyer = new Foyer("Foyer");
+        Room studio = new Studio("Studio");
         Room basement = new Basement("Basement");
         // Apart from the riddle room, maze, and exit here.
         Room riddleRoom = new RiddleRoom("Riddle Room");
@@ -31,6 +35,11 @@ public class Maze {
         Room forest = new Forest("Forest");
         Room mountains = new Mountains("Mountains");
         Room glade = new Glade("Glade");
+        Room ravine = new Ravine("Ravine");
+        Room ravineWall = new RavineWall("Ravine Wall");
+        Room ravineCave = new RavineCave("Ravine Cave");
+        Room cavePassage = new CavePassage("Cave Passage");
+        Room caveTrap = new CaveTrap("Cave Trap");
 
         // Setting all the connections between rooms.
         westOfHouse.setWest(forest);
@@ -42,9 +51,14 @@ public class Maze {
         northOfHouse.setWest(westOfHouse);
 
         behindHouse.setNorth(northOfHouse);
-        behindHouse.setEast(forest);
+        behindHouse.setEast(gardenShed);
         behindHouse.setSouth(southOfHouse);
         behindHouse.setWest(kitchen);
+
+        gardenShed.setWest(behindHouse);
+        gardenShed.setEast(forest);
+        gardenShed.setNorth(forest);
+        gardenShed.setSouth(forest);
 
         southOfHouse.setEast(behindHouse);
         southOfHouse.setWest(westOfHouse);
@@ -57,9 +71,13 @@ public class Maze {
 
         basement.setUp(kitchen);
 
+        foyer.setNorth(studio);
         foyer.setSouth(kitchen);
         foyer.setEast(riddleRoom);
 
+        studio.setDown(caveTrap);
+        studio.setSouth(foyer);
+        studio.setLocked(true);
 
         // The riddle maze logic works by setting a chain of dark rooms with one exit.
         riddleRoom.setLocked(true);
@@ -74,18 +92,34 @@ public class Maze {
         riddle5.setNorth(exitRoom);
         // If successful the player will reach the exit room and be able to win the game.
 
-        // The glade was added for variety and future content.
+        // The glade branches off to provide an alternate path.
         glade.setSouth(northOfHouse);
         glade.setNorth(mountains);
-        glade.setEast(forest);
+        glade.setEast(ravine);
+
+        ravine.setWest(glade);
+        ravine.setNorth(mountains);
+        ravine.setDown(ravineWall);
+
+        ravineWall.setLocked(true);
+        ravineWall.setUp(ravine);
+        ravineWall.setWest(ravineCave);
+
+        ravineCave.setEast(ravineWall);
+        ravineCave.setWest(cavePassage);
+
+        cavePassage.setEast(ravineCave);
+        cavePassage.setWest(caveTrap);
+        caveTrap.setEast(cavePassage);
+        caveTrap.setUp(studio);
 
         // The forest surrounds the house according to the description.
         // For simplicity it's just one room the player ends up in for moving too far away from the house.
-        // It links back to the house/glade when the player moves out of it.
+        // It links back to the house when the player moves out a direction other than South.
         forest.setEast(westOfHouse);
-        forest.setWest(behindHouse);
+        forest.setWest(gardenShed);
         forest.setNorth(southOfHouse);
-        forest.setSouth(glade);
+        forest.setSouth(forest);
 
         // The mountains don't do anything yet.
         mountains.setSouth(glade);
@@ -121,14 +155,14 @@ public class Maze {
 
     // The move method is ugly but it works.
     public String move(char direction) {
+        // When the input matches an exit from the current room.
         if (currentRoom.isValidDirection(direction)) {
-            // for valid move directions.
             if (currentRoom.getAdjoiningRoom(direction) instanceof Bounceable) {
-                // Bounceable rooms aren't enterable they provide text to simulate having to turn back.
+                // Bounceable rooms aren't enterable, they provide text to simulate having to turn back.
                 return currentRoom.getAdjoiningRoom(direction).getDescription();
             } else if (currentRoom.getAdjoiningRoom(direction).isLocked()) {
                 // This is for locked rooms.
-                return "You lack the means to open the way.";
+                return "The way is currently impassable.";
             } else if (currentRoom.getAdjoiningRoom(direction) instanceof Tripable
                     && !player.getInventory().contains("lantern")) {
                 // Trippable rooms will cause a game over without the lantern.
@@ -170,19 +204,19 @@ public class Maze {
         return currentRoom.getDescription();
     }
 
-    // As a design choice the player 
+    // I left this method in but it is not used due to redundancy.
+    // The room descriptions are written to describe which ways the player can go.
     public String getCurrentRoomExits() {
         return currentRoom.getExits();
     }
 
-    // Check if the player has visited the room before to display the description
-    // without the look command.
-    public Boolean isFirstVisit() {
+    // Following Zork, the room description is only show on first visit to a room unless look is used.
+    public String isFirstVisit() {
         if (!currentRoom.isVisited()) {
             currentRoom.setVisited(true);
-            return true;
+            return currentRoom.getDescription();
         }
-        return false;
+        return "";
     }
 
     public boolean isFinished() {

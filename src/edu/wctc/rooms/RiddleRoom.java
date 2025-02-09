@@ -1,4 +1,4 @@
-package edu.wctc;
+package edu.wctc.rooms;
 
 public class RiddleRoom extends Room implements Interactable {
     public RiddleRoom(String name) {
@@ -19,7 +19,7 @@ public class RiddleRoom extends Room implements Interactable {
     I wanted the path to be a word spelled with n s e w u d but had trouble since I couldn't use opposite directions.
     You would just go back to the last room. Thats when I realized that the rooms didn't have to connect logically.
     The doors to other rooms worked just fine if they were one way. So I picked a word that I was able to make a riddle with,
-    and I came up with "unseen" maybe I will make more riddles with "sweeden" "unused" and "seeded".
+    and I came up with "unseen" maybe I will make more riddles with "sweden" "unused" "seeded" "sunweed" or "wednes".
     */
     @Override
     public String interact(Player player , Room room) {

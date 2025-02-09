@@ -1,4 +1,4 @@
-package edu.wctc;
+package edu.wctc.rooms;
 
 import java.util.ArrayList;
 

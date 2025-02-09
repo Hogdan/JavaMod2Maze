@@ -1,4 +1,4 @@
-package edu.wctc;
+package edu.wctc.rooms;
 
 public class Mountains extends Room implements Bounceable {
     public Mountains(String name) {

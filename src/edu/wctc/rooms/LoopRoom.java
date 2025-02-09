@@ -1,4 +1,4 @@
-package edu.wctc;
+package edu.wctc.rooms;
 
 public class LoopRoom extends Room {
     public LoopRoom(String name) {

@@ -1,4 +1,4 @@
-package edu.wctc;
+package edu.wctc.rooms;
 
 public class ExitRoom extends Room implements Exitable {
     public ExitRoom(String name) {
@@ -8,12 +8,14 @@ public class ExitRoom extends Room implements Exitable {
     // I'm not sure what the exit is, a portal I suppose.
     @Override
     public String getDescription() {
-        return "The exit stands in the middle of this room.";
+        return """
+                A shimmering portal stands before you. The air around it crackles with energy.
+                """;
     }
 
     @Override
     public String exit(Player player) {
-        player.addToScore(10);
-        return "You have escaped Zerk.";
+        player.addToScore(25);
+        return "Congratulations! You have escaped Zerk!";
     }
 }

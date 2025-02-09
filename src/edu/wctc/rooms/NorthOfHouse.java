@@ -1,4 +1,4 @@
-package edu.wctc;
+package edu.wctc.rooms;
 
 public class NorthOfHouse extends Room {
     public NorthOfHouse(String name) {
